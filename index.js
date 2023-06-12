@@ -1,6 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const { createLogo } = require('./lib/logoGenerator');
+const { Triangle, Circle, Square } = require('./lib/shapes');
 
 // The user will be prompted for input
 inquirer
@@ -33,11 +33,26 @@ inquirer
       message: 'Enter the shape color (keyword or hexadecimal number):',
     },
   ])
-  .then((answers) => {
-    // Generate the logo
-    const logo = createLogo(answers.text, answers.textColor, answers.shape, answers.shapeColor);
 
-    // The logo is saved as an SVG file
+  .then((answers) => {
+    // Generating the logo
+    let logo;
+    switch (answers.shape) {
+      case 'circle':
+        logo = new Circle(answers.text, answers.textColor, answers.shapeColor).render();
+        break;
+      case 'triangle':
+        logo = new Triangle(answers.text, answers.textColor, answers.shapeColor).render();
+        break;
+      case 'square':
+        logo = new Square(answers.text, answers.textColor, answers.shapeColor).render();
+        break;
+      default:
+        console.error('Invalid shape');
+        return;
+    }
+
+    // Saving the logo as an SVG file
     fs.writeFile('logo.svg', logo, (err) => {
       if (err) {
         console.error('Error saving the logo:', err);

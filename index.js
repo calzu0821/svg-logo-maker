@@ -1,6 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-// const { createLogo } = require('./logoGenerator');
+const { createLogo } = require('./lib/logoGenerator');
 
 // The user will be prompted for input
 inquirer

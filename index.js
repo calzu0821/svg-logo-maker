@@ -57,10 +57,10 @@ function generateLogo() {
         return;
     }
 
-    logo.setColor(shapeColor)
-    logo.setTextColor(textColor)
     logo.setText(text)
-
+    logo.setTextColor(textColor)
+    logo.setShapeColor(shapeColor)
+    
     const svg = logo.render();
     const logoPath = './examples/logo.svg';
 

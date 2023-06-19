@@ -1,10 +1,12 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const { Triangle, Circle, Square } = require('./lib/shapes');
+const Triangle = require('./lib/triangle');
+const Circle = require('./lib/circle');
+const Square = require('./lib/square');
 
 // The user will be prompted for input
-inquirer
-  .prompt([
+function promptUser () {
+  return inquirer.prompt([
     {
       type: 'input',
       name: 'text',
@@ -32,28 +34,38 @@ inquirer
       name: 'shapeColor',
       message: 'Enter the shape color (keyword or hexadecimal number):',
     },
-  ])
+  ]);
+}
 
-  .then((answers) => {
-    // Generating the logo
+// Generating the logo
+function generateLogo() {
+  promptUser().then(answers => {
+    const { text, textColor, shape, shapeColor } = answers;
     let logo;
-    switch (answers.shape) {
+    switch (shape) {
       case 'circle':
-        logo = new Circle(answers.text, answers.textColor, answers.shapeColor).render();
+        logo = new Circle();
         break;
       case 'triangle':
-        logo = new Triangle(answers.text, answers.textColor, answers.shapeColor).render();
+        logo = new Triangle();
         break;
       case 'square':
-        logo = new Square(answers.text, answers.textColor, answers.shapeColor).render();
+        logo = new Square();
         break;
       default:
         console.error('Invalid shape');
         return;
     }
 
+    logo.setColor(shapeColor)
+    logo.setTextColor(textColor)
+    logo.setText(text)
+
+    const svg = logo.render();
+    const logoPath = './examples/logo.svg';
+
     // Saving the logo as an SVG file
-    fs.writeFile('logo.svg', logo, (err) => {
+    fs.writeFile(logoPath, svg, (err) => {
       if (err) {
         console.error('Error saving the logo:', err);
       } else {
@@ -64,3 +76,5 @@ inquirer
   .catch((error) => {
     console.error('An error occurred:', error);
   });
+}
+  generateLogo();

@@ -1,9 +1,20 @@
-const { Triangle, Circle, Square } = require('../lib/shapes');
+const Shape = require('../lib/Shape');
 
-describe('Triangle', () => {
-  test('render() returns the SVG string for a triangle with the given shape color', () => {
-    const shape = new Triangle('ABC', 'blue', 'blue');
-    expect(shape.render()).toEqual('<polygon points="150, 18 244, 182 56, 182" fill="blue" />');
+describe('Shape', () => {
+  describe('setColor', () => {
+    it('should set the color property', () => {
+      const shape = new Shape();
+      shape.setColor('red');
+      expect(shape.color).toBe('red');
+    });
+  });
+
+  describe('render', () => {
+    it('should throw an error when called directly on the Shape class', () => {
+      const shape = new Shape();
+      expect(() => shape.render()).toThrowError('The render() method must be implemented by the subclass');
+    });
   });
 });
 
+module.exports = Shape; 

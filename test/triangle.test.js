@@ -1,10 +1,10 @@
-const Triangle = require('../lib/Triangle');
+const Triangle = require('../lib/triangle');
 
 describe('Triangle', () => {
   describe('render', () => {
     it('should render a triangle SVG with the specified color', () => {
       const triangle = new Triangle();
-      triangle.setColor('#FF0000');
+      triangle.setShapeColor('#FF0000');
       const renderedSvg = triangle.render().replace(/\s+/g, ' ').trim();
       expect(renderedSvg).toContain('<svg');
       expect(renderedSvg).toContain('viewBox="0 0 300 200"');

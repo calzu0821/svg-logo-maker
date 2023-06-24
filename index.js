@@ -27,7 +27,7 @@ function promptUser () {
       type: 'list',
       name: 'shape',
       message: 'Choose a shape:',
-      choices: ['circle', 'triangle', 'square'],
+      choices: ['Circle', 'Triangle', 'Square'],
     },
     {
       type: 'input',
@@ -43,13 +43,13 @@ function generateLogo() {
     const { text, textColor, shape, shapeColor } = answers;
     let logo;
     switch (shape) {
-      case 'circle':
+      case 'Circle':
         logo = new Circle();
         break;
-      case 'triangle':
+      case 'Triangle':
         logo = new Triangle();
         break;
-      case 'square':
+      case 'Square':
         logo = new Square();
         break;
       default:

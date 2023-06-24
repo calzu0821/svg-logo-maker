@@ -22,7 +22,7 @@ git clone https://github.com/calzu0821/svg-logo-maker.git
 
 After launching the application, simply proceed with the prompts to generate your logo. You will need to input text, specify the text color, choose a shape from the available options (circle, triangle, or square), and select a color for the shape. Once you have provided all the necessary inputs, the application will generate an SVG file named "logo.svg" and display the message "Generated logo.svg" in the command line interface.
 
-Walkthrough Video:
+Walkthrough Video: https://drive.google.com/file/d/1F-jKSPSbI7_vmJz9l32z3nNokzjdhLfy/view?usp=drive_link
 
 
 ## Credits
